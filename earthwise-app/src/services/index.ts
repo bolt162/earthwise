@@ -8,11 +8,101 @@ const mockModules: Record<string, () => Promise<{ default: AnalysisData }>> = {
   geotech_report4: () => import('../mock-data/geotech_report4.json'),
 };
 
-export async function loadAnalysisData(fileName: string): Promise<AnalysisData> {
+// ── Backend API response types ──
+
+interface UploadResponse {
+  reportId: number;
+  jobId: number;
+  status: string;
+  fileName: string;
+}
+
+interface JobStatusResponse {
+  jobId: number;
+  reportId: number;
+  status: string;
+  currentStage: string | null;
+  progressPercent: number;
+}
+
+// ── Upload & polling for backend mode ──
+
+export async function uploadFileToBackend(file: File): Promise<UploadResponse> {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await fetch(`${appConfig.apiBaseUrl}/api/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`Upload failed: ${detail}`);
+  }
+
+  return response.json();
+}
+
+export async function pollJobUntilComplete(
+  jobId: number,
+  onProgress?: (stage: string | null, percent: number) => void
+): Promise<void> {
+  const POLL_INTERVAL = 2000;
+  const TIMEOUT = 10 * 60 * 1000; // 10 minutes
+  const startTime = Date.now();
+
+  while (true) {
+    const response = await fetch(`${appConfig.apiBaseUrl}/api/jobs/${jobId}`);
+    if (!response.ok) {
+      throw new Error(`Failed to check job status: ${response.statusText}`);
+    }
+
+    const job: JobStatusResponse = await response.json();
+
+    onProgress?.(job.currentStage, job.progressPercent);
+
+    if (job.status === 'completed') {
+      return;
+    }
+
+    if (job.status === 'failed') {
+      throw new Error('Pipeline processing failed. Check backend logs for details.');
+    }
+
+    if (Date.now() - startTime > TIMEOUT) {
+      throw new Error('Processing timed out after 10 minutes.');
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL));
+  }
+}
+
+// ── Main data loading ──
+
+export async function loadAnalysisData(
+  fileOrName: string | File,
+  onProgress?: (stage: string | null, percent: number) => void
+): Promise<AnalysisData> {
   if (isMockMode()) {
+    const fileName = typeof fileOrName === 'string' ? fileOrName : fileOrName.name;
     return loadMockData(fileName);
   }
-  return fetchAnalysisFromBackend(fileName);
+
+  // Backend mode
+  if (fileOrName instanceof File) {
+    const uploadResult = await uploadFileToBackend(fileOrName);
+
+    // If already completed (duplicate hash), skip polling
+    if (uploadResult.status !== 'completed') {
+      await pollJobUntilComplete(uploadResult.jobId, onProgress);
+    }
+
+    return fetchAnalysisFromBackend(uploadResult.fileName);
+  }
+
+  // String filename — direct fetch (backward compat)
+  return fetchAnalysisFromBackend(fileOrName);
 }
 
 async function loadMockData(fileName: string): Promise<AnalysisData> {
@@ -45,6 +135,8 @@ async function fetchAnalysisFromBackend(fileName: string): Promise<AnalysisData>
 
   return response.json();
 }
+
+// ── Chat ──
 
 export async function sendChatMessage(
   message: string,

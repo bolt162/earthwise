@@ -3,7 +3,17 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { loadAnalysisData } from '../services';
-import { MOCK_FILE_MAP } from '../config';
+import { isMockMode, MOCK_FILE_MAP } from '../config';
+
+const STAGE_LABELS: Record<string, string> = {
+  ingest: 'Ingesting PDF',
+  text_extract: 'Extracting text',
+  table_extract: 'Extracting tables',
+  section_detect: 'Detecting sections',
+  llm_extract: 'AI analysis in progress',
+  normalize: 'Normalizing data',
+  build_output: 'Building results',
+};
 
 export default function FileUpload() {
   const navigate = useNavigate();
@@ -19,14 +29,20 @@ export default function FileUpload() {
     'idle' | 'uploading' | 'success' | 'error'
   >('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [progressInfo, setProgressInfo] = useState<{
+    stage: string | null;
+    percent: number;
+  }>({ stage: null, percent: 0 });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const mockMode = isMockMode();
   const supportedFiles = Object.keys(MOCK_FILE_MAP);
 
   const handleFile = async (file: File) => {
     const fileName = file.name;
 
-    if (!MOCK_FILE_MAP[fileName]) {
+    // In mock mode, only accept known mock files
+    if (mockMode && !MOCK_FILE_MAP[fileName]) {
       setUploadState('error');
       setErrorMessage(
         `"${fileName}" is not a recognized report. Supported files: ${supportedFiles.join(', ')}`
@@ -34,13 +50,26 @@ export default function FileUpload() {
       return;
     }
 
+    // In backend mode, only accept PDFs
+    if (!mockMode && !fileName.toLowerCase().endsWith('.pdf')) {
+      setUploadState('error');
+      setErrorMessage('Only PDF files are accepted.');
+      return;
+    }
+
     setUploadState('uploading');
+    setProgressInfo({ stage: null, percent: 0 });
     setLoading(true);
     setError(null);
     clearChatMessages();
 
     try {
-      const data = await loadAnalysisData(fileName);
+      // In backend mode, pass the File object so it gets uploaded
+      // In mock mode, pass the filename string
+      const data = await loadAnalysisData(
+        mockMode ? fileName : file,
+        (stage, percent) => setProgressInfo({ stage, percent })
+      );
       setUploadedFileName(fileName);
       setAnalysisData(data);
       setCurrentProject(data.projectSummary.projectName);
@@ -73,6 +102,10 @@ export default function FileUpload() {
     const file = e.target.files?.[0];
     if (file) handleFile(file);
   };
+
+  const stageLabel = progressInfo.stage
+    ? STAGE_LABELS[progressInfo.stage] || progressInfo.stage
+    : 'Processing geotechnical data';
 
   return (
     <div className="w-full max-w-xl mx-auto">
@@ -113,9 +146,11 @@ export default function FileUpload() {
             <p className="text-sm text-[var(--text-muted)]">
               Drag and drop a PDF file or click to browse
             </p>
-            <p className="text-xs text-[var(--text-muted)] mt-2">
-              Supported: {supportedFiles.join(', ')}
-            </p>
+            {mockMode && (
+              <p className="text-xs text-[var(--text-muted)] mt-2">
+                Supported: {supportedFiles.join(', ')}
+              </p>
+            )}
           </>
         )}
 
@@ -129,8 +164,21 @@ export default function FileUpload() {
               Analyzing Report...
             </p>
             <p className="text-sm text-[var(--text-muted)] mt-1">
-              Processing geotechnical data
+              {stageLabel}
             </p>
+            {!mockMode && progressInfo.percent > 0 && (
+              <div className="mt-3 w-full max-w-xs mx-auto">
+                <div className="h-2 bg-[var(--bg-tertiary)] rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[var(--accent-color)] rounded-full transition-all duration-500"
+                    style={{ width: `${progressInfo.percent}%` }}
+                  />
+                </div>
+                <p className="text-xs text-[var(--text-muted)] mt-1">
+                  {progressInfo.percent}%
+                </p>
+              </div>
+            )}
           </>
         )}
 
@@ -181,32 +229,34 @@ export default function FileUpload() {
         )}
       </div>
 
-      {/* Quick load buttons for demo */}
-      <div className="mt-6">
-        <p
-          className="text-sm text-[var(--text-muted)] mb-3 text-center"
-          style={{ fontFamily: 'var(--font-oswald)' }}
-        >
-          Or load a sample report:
-        </p>
-        <div className="grid grid-cols-2 gap-3">
-          {supportedFiles.map((file) => (
-            <button
-              key={file}
-              onClick={() => {
-                const mockFile = new File([], file, {
-                  type: 'application/pdf',
-                });
-                handleFile(mockFile);
-              }}
-              className="flex items-center px-3 py-2 rounded-md bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-sm hover:bg-[var(--accent-color)] hover:text-white transition-colors"
-            >
-              <FileText size={16} className="mr-2 flex-shrink-0" />
-              <span className="truncate">{file}</span>
-            </button>
-          ))}
+      {/* Quick load buttons — only in mock mode */}
+      {mockMode && (
+        <div className="mt-6">
+          <p
+            className="text-sm text-[var(--text-muted)] mb-3 text-center"
+            style={{ fontFamily: 'var(--font-oswald)' }}
+          >
+            Or load a sample report:
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            {supportedFiles.map((file) => (
+              <button
+                key={file}
+                onClick={() => {
+                  const mockFile = new File([], file, {
+                    type: 'application/pdf',
+                  });
+                  handleFile(mockFile);
+                }}
+                className="flex items-center px-3 py-2 rounded-md bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-sm hover:bg-[var(--accent-color)] hover:text-white transition-colors"
+              >
+                <FileText size={16} className="mr-2 flex-shrink-0" />
+                <span className="truncate">{file}</span>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
