@@ -1,0 +1,247 @@
+{
+  "projectSummary": {
+    "projectName": "Harbor Point Industrial Warehouse",
+    "uploadedFileName": "geotech_report3.pdf",
+    "dateAnalyzed": "2025-01-10",
+    "riskScore": 88,
+    "totalBorings": 10,
+    "groundwaterDetected": true,
+    "rockRefusalDetected": false
+  },
+  "waterTable": [
+    {
+      "boringId": "B-1",
+      "groundwaterDepth": "4.5 ft",
+      "pageNumber": 9,
+      "evidenceSnippet": "Groundwater encountered at 4.5 feet. Site is adjacent to tidal marshland and water levels may fluctuate."
+    },
+    {
+      "boringId": "B-2",
+      "groundwaterDepth": "5.0 ft",
+      "pageNumber": 10,
+      "evidenceSnippet": "Free water at 5.0 feet below existing grade in Boring B-2."
+    },
+    {
+      "boringId": "B-3",
+      "groundwaterDepth": "3.5 ft",
+      "pageNumber": 10,
+      "evidenceSnippet": "Shallow groundwater at 3.5 feet, consistent with proximity to wetland area."
+    },
+    {
+      "boringId": "B-4",
+      "groundwaterDepth": "6.0 ft",
+      "pageNumber": 11,
+      "evidenceSnippet": "Water table at 6 feet in B-4, slightly deeper than eastern borings."
+    },
+    {
+      "boringId": "B-5",
+      "groundwaterDepth": "4.0 ft",
+      "pageNumber": 11,
+      "evidenceSnippet": "Groundwater at 4 feet with artesian-like conditions observed."
+    },
+    {
+      "boringId": "B-6",
+      "groundwaterDepth": "5.5 ft",
+      "pageNumber": 12,
+      "evidenceSnippet": "Free water at 5.5 feet below ground surface."
+    },
+    {
+      "boringId": "B-7",
+      "groundwaterDepth": "3.0 ft",
+      "pageNumber": 12,
+      "evidenceSnippet": "Very shallow water at 3 feet. Seasonal high water table expected at or near surface."
+    },
+    {
+      "boringId": "B-8",
+      "groundwaterDepth": "4.5 ft",
+      "pageNumber": 13,
+      "evidenceSnippet": "Groundwater at 4.5 feet consistent with site hydrology."
+    },
+    {
+      "boringId": "B-9",
+      "groundwaterDepth": "5.0 ft",
+      "pageNumber": 13,
+      "evidenceSnippet": "Water observed at 5 feet during drilling of Boring B-9."
+    },
+    {
+      "boringId": "B-10",
+      "groundwaterDepth": "3.5 ft",
+      "pageNumber": 14,
+      "evidenceSnippet": "Shallow groundwater at 3.5 feet near site boundary."
+    }
+  ],
+  "borings": [
+    {
+      "boringId": "B-1",
+      "soilTypes": ["Organic Clay (OH)", "Soft Clay (CH)", "Silty Sand"],
+      "redFlagIndicators": ["Organic soils", "Very soft", "Compressible"],
+      "refusalDepth": "N/A",
+      "notes": "Organic clay layer from 0-4 feet. Very soft, highly compressible. Not suitable for direct support."
+    },
+    {
+      "boringId": "B-2",
+      "soilTypes": ["Organic Silt (OL)", "Fat Clay (CH)", "Sandy Silt"],
+      "redFlagIndicators": ["Organic content", "High plasticity"],
+      "refusalDepth": "N/A",
+      "notes": "Organic silt in upper 3 feet. Fat clay below with PI of 42."
+    },
+    {
+      "boringId": "B-3",
+      "soilTypes": ["Peat", "Organic Clay", "Soft Clay"],
+      "redFlagIndicators": ["Peat", "Marsh soils", "Extreme compression"],
+      "refusalDepth": "N/A",
+      "notes": "Peat layer from 0-3 feet. Complete removal required. Unsuitable for any structural support."
+    },
+    {
+      "boringId": "B-4",
+      "soilTypes": ["Sandy Clay", "Lean Clay (CL)", "Dense Sand"],
+      "redFlagIndicators": ["Soft upper soils"],
+      "refusalDepth": "N/A",
+      "notes": "Better conditions than eastern borings. Dense sand below 15 feet provides good bearing."
+    },
+    {
+      "boringId": "B-5",
+      "soilTypes": ["Organic Clay", "Soft Clay (CL)", "Silty Sand (SM)"],
+      "redFlagIndicators": ["Organic content", "Soft zones"],
+      "refusalDepth": "N/A",
+      "notes": "Organic clay layer to 5 feet. Soft clay zone from 5-12 feet."
+    },
+    {
+      "boringId": "B-6",
+      "soilTypes": ["Lean Clay (CL)", "Sandy Clay", "Sand (SP)"],
+      "redFlagIndicators": ["Moderate softness"],
+      "refusalDepth": "N/A",
+      "notes": "Marginally adequate upper soils. Improvement recommended."
+    },
+    {
+      "boringId": "B-7",
+      "soilTypes": ["Organic Silt", "Fat Clay (CH)", "Silt (ML)"],
+      "redFlagIndicators": ["Organic soils", "Fatty clay", "Marshy"],
+      "refusalDepth": "N/A",
+      "notes": "Most challenging boring. Organic and fatty soils to 8 feet depth."
+    },
+    {
+      "boringId": "B-8",
+      "soilTypes": ["Lean Clay (CL)", "Sandy Lean Clay", "Silty Sand"],
+      "redFlagIndicators": ["Soft zones"],
+      "refusalDepth": "N/A",
+      "notes": "Moderate conditions. Soft clay zone from 3-8 feet."
+    },
+    {
+      "boringId": "B-9",
+      "soilTypes": ["Sandy Clay", "Clay (CL)", "Dense Sand"],
+      "redFlagIndicators": [],
+      "refusalDepth": "N/A",
+      "notes": "Relatively favorable conditions in western portion of site."
+    },
+    {
+      "boringId": "B-10",
+      "soilTypes": ["Organic Clay", "Soft Clay", "Silt"],
+      "redFlagIndicators": ["Organic content", "Compressible"],
+      "refusalDepth": "N/A",
+      "notes": "Organic layer near surface. Ground improvement needed."
+    }
+  ],
+  "recommendations": {
+    "slab": [
+      {
+        "summary": "Structural slab on drilled piers required. Slab-on-grade NOT recommended due to organic and compressible soils.",
+        "pageReferences": [22, 23],
+        "keywordsDetected": ["structural slab", "drilled piers", "compressible soils"]
+      },
+      {
+        "summary": "If ground-supported slab is used, minimum 36-inch surcharge and preloading program required prior to construction.",
+        "pageReferences": [23, 24],
+        "keywordsDetected": ["surcharge", "preloading", "ground improvement"]
+      }
+    ],
+    "foundation": [
+      {
+        "summary": "Deep foundations (drilled piers or driven piles) required. Minimum penetration to dense sand layer below 20 feet.",
+        "pageReferences": [25, 26],
+        "keywordsDetected": ["deep foundations", "drilled piers", "driven piles", "dense sand"]
+      },
+      {
+        "summary": "Negative skin friction (downdrag) must be accounted for in pile design due to consolidating organic soils.",
+        "pageReferences": [26],
+        "keywordsDetected": ["negative skin friction", "downdrag", "consolidation"]
+      }
+    ],
+    "pavement": [
+      {
+        "summary": "Complete removal of organic and peat layers required under all pavement areas. Minimum 3-foot over-excavation.",
+        "pageReferences": [27, 28],
+        "keywordsDetected": ["over-excavation", "organic removal", "peat removal"]
+      },
+      {
+        "summary": "Geotextile fabric separator required between subgrade and aggregate base course throughout parking and drive areas.",
+        "pageReferences": [28],
+        "keywordsDetected": ["geotextile", "fabric separator", "aggregate base"]
+      }
+    ]
+  },
+  "riskFlags": [
+    {
+      "id": "rf-1",
+      "category": "Marshland",
+      "confidenceLevel": "high",
+      "pageReference": 6,
+      "evidence": "Site is adjacent to tidal marshland. Organic soils and peat layers found in multiple borings.",
+      "description": "Marshy conditions create extreme foundation challenges. Ground improvement or deep foundations essential."
+    },
+    {
+      "id": "rf-2",
+      "category": "Dewatering",
+      "confidenceLevel": "high",
+      "pageReference": 15,
+      "evidence": "Groundwater at 3-6 feet across entire site. Seasonal high water table may be at surface level.",
+      "description": "Extensive dewatering system required for all excavations. Permanent drainage consideration needed."
+    },
+    {
+      "id": "rf-3",
+      "category": "Over Excavation",
+      "confidenceLevel": "high",
+      "pageReference": 27,
+      "evidence": "Organic and peat layers from 0-5 feet require complete removal and replacement across 70% of site.",
+      "description": "Massive over-excavation costs anticipated. Budget for removal and replacement of organic soils."
+    },
+    {
+      "id": "rf-4",
+      "category": "Fatty Soils",
+      "confidenceLevel": "high",
+      "pageReference": 12,
+      "evidence": "Fat clay (CH) with PI values up to 42 found in multiple borings below the organic layer.",
+      "description": "Fatty soils compound foundation challenges. Swell/shrink behavior creates additional risk."
+    },
+    {
+      "id": "rf-5",
+      "category": "Moisture Control",
+      "confidenceLevel": "high",
+      "pageReference": 22,
+      "evidence": "Shallow water table and organic soils create persistent moisture challenges across the site.",
+      "description": "Comprehensive moisture management plan required for construction and long-term performance."
+    },
+    {
+      "id": "rf-6",
+      "category": "Undercut",
+      "confidenceLevel": "high",
+      "pageReference": 28,
+      "evidence": "Pavement subgrade entirely unsuitable without extensive over-excavation and replacement.",
+      "description": "Full undercut of organic soils required under all paved areas. Minimum 3-foot depth."
+    }
+  ],
+  "chatResponses": [
+    {
+      "trigger": "water",
+      "response": "Groundwater is extremely shallow at this site, ranging from 3 to 6 feet. This is a major construction challenge requiring extensive dewatering."
+    },
+    {
+      "trigger": "foundation",
+      "response": "Deep foundations (drilled piers or driven piles) are mandatory due to organic and compressible soils. Shallow foundations are NOT suitable at this site."
+    },
+    {
+      "trigger": "risk",
+      "response": "This is a high-risk site (score: 88). Major concerns include marshy conditions, very shallow groundwater, extensive organic soils requiring removal, and fatty clay layers."
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "projectSummary": {
+    "projectName": "Summit Ridge Office Complex",
+    "uploadedFileName": "geotech_report4.pdf",
+    "dateAnalyzed": "2025-02-05",
+    "riskScore": 35,
+    "totalBorings": 5,
+    "groundwaterDetected": false,
+    "rockRefusalDetected": true
+  },
+  "waterTable": [
+    {
+      "boringId": "B-1",
+      "groundwaterDepth": "Not encountered",
+      "pageNumber": 6,
+      "evidenceSnippet": "No groundwater encountered to 35 feet below grade in Boring B-1."
+    },
+    {
+      "boringId": "B-2",
+      "groundwaterDepth": "Not encountered",
+      "pageNumber": 7,
+      "evidenceSnippet": "Dry conditions throughout drilling of Boring B-2 to auger refusal."
+    },
+    {
+      "boringId": "B-3",
+      "groundwaterDepth": "Not encountered",
+      "pageNumber": 7,
+      "evidenceSnippet": "No free water observed in Boring B-3 to 30 feet."
+    },
+    {
+      "boringId": "B-4",
+      "groundwaterDepth": "Not encountered",
+      "pageNumber": 8,
+      "evidenceSnippet": "Groundwater not encountered to terminal depth in Boring B-4."
+    },
+    {
+      "boringId": "B-5",
+      "groundwaterDepth": "Not encountered",
+      "pageNumber": 8,
+      "evidenceSnippet": "Dry drilling conditions throughout Boring B-5."
+    }
+  ],
+  "borings": [
+    {
+      "boringId": "B-1",
+      "soilTypes": ["Sandy Lean Clay (CL)", "Weathered Sandstone"],
+      "redFlagIndicators": [],
+      "refusalDepth": "28.0 ft",
+      "notes": "Stiff to very stiff clay profile. Excellent bearing capacity. Refusal on weathered sandstone."
+    },
+    {
+      "boringId": "B-2",
+      "soilTypes": ["Lean Clay (CL)", "Clayey Sand (SC)", "Sandstone"],
+      "redFlagIndicators": [],
+      "refusalDepth": "24.0 ft",
+      "notes": "Uniform conditions with good SPT values throughout. Sandstone at 24 feet."
+    },
+    {
+      "boringId": "B-3",
+      "soilTypes": ["Sandy Clay", "Lean Clay (CL)", "Dense Gravel", "Sandstone"],
+      "redFlagIndicators": [],
+      "refusalDepth": "30.0 ft",
+      "notes": "Very consistent profile. Dense gravel transition zone above bedrock."
+    },
+    {
+      "boringId": "B-4",
+      "soilTypes": ["Lean Clay (CL)", "Sandy Lean Clay", "Weathered Rock"],
+      "redFlagIndicators": [],
+      "refusalDepth": "26.0 ft",
+      "notes": "Favorable conditions. Moderate to high SPT values increasing with depth."
+    },
+    {
+      "boringId": "B-5",
+      "soilTypes": ["Lean Clay (CL)", "Silty Clay", "Sandstone"],
+      "redFlagIndicators": [],
+      "refusalDepth": "25.0 ft",
+      "notes": "Good bearing soils. Sandstone at moderate depth suitable for pier bearing."
+    }
+  ],
+  "recommendations": {
+    "slab": [
+      {
+        "summary": "Conventional slab-on-grade suitable. Minimum 6-inch moisture-conditioned pad of select fill.",
+        "pageReferences": [14],
+        "keywordsDetected": ["slab-on-grade", "moisture conditioning", "select fill"]
+      },
+      {
+        "summary": "Subgrade should be proof-rolled and any soft areas repaired to minimum 95% Standard Proctor density.",
+        "pageReferences": [14, 15],
+        "keywordsDetected": ["proof-rolled", "Standard Proctor"]
+      }
+    ],
+    "foundation": [
+      {
+        "summary": "Conventional spread footings recommended with 3,500 psf allowable bearing pressure on native clay at 3 feet depth.",
+        "pageReferences": [16],
+        "keywordsDetected": ["spread footings", "bearing pressure", "native clay"]
+      },
+      {
+        "summary": "Mat foundation also suitable for the building core with 4,000 psf allowable bearing on dense soils.",
+        "pageReferences": [16, 17],
+        "keywordsDetected": ["mat foundation", "building core", "dense soils"]
+      }
+    ],
+    "pavement": [
+      {
+        "summary": "Standard pavement section: 2-inch HMAC surface, 8-inch aggregate base on compacted subgrade.",
+        "pageReferences": [18],
+        "keywordsDetected": ["HMAC", "aggregate base", "compacted subgrade"]
+      },
+      {
+        "summary": "No special subgrade treatment required. Standard compaction to 95% modified Proctor sufficient.",
+        "pageReferences": [18],
+        "keywordsDetected": ["compaction", "modified Proctor"]
+      }
+    ]
+  },
+  "riskFlags": [
+    {
+      "id": "rf-1",
+      "category": "Rock",
+      "confidenceLevel": "medium",
+      "pageReference": 10,
+      "evidence": "Sandstone bedrock at 24-30 feet depth. May require rock excavation for deep utilities.",
+      "description": "Plan for potential rock excavation in utility corridors exceeding 6 feet depth."
+    },
+    {
+      "id": "rf-2",
+      "category": "Moisture Control",
+      "confidenceLevel": "low",
+      "pageReference": 14,
+      "evidence": "Minor seasonal moisture variation expected in upper clay soils.",
+      "description": "Standard moisture conditioning during slab construction should be sufficient."
+    }
+  ],
+  "chatResponses": [
+    {
+      "trigger": "water",
+      "response": "No groundwater was encountered at any boring location. This site has excellent subsurface water conditions for construction."
+    },
+    {
+      "trigger": "foundation",
+      "response": "Conventional spread footings at 3,500 psf are recommended. This is a very straightforward foundation design with excellent bearing soils."
+    },
+    {
+      "trigger": "risk",
+      "response": "This is a low-risk site (score: 35). Minor concerns include potential rock excavation for deep utilities and standard moisture conditioning."
+    }
+  ]
+}

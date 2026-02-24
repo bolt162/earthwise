@@ -1,0 +1,233 @@
+{
+  "projectSummary": {
+    "projectName": "Chase Bank – TAP #25070 Crossroads and 12th",
+    "uploadedFileName": "JY255038 - Geotechnical Engineering Report - Chase Bank - signed.pdf",
+    "dateAnalyzed": "2025-10-10",
+    "reportReference": "Terracon Project No. JY255038",
+    "location": "Crossroads Dr. SW and U.S. Hwy 14, Rochester, MN",
+    "riskScore": 62,
+    "totalBorings": 7,
+    "groundwaterDetected": true,
+    "rockRefusalDetected": false,
+    "primaryConcern": "Undocumented existing fill (4 to 8.7 feet thick) with debris and obstruction in B-3 area"
+  },
+
+  "waterTable": [
+    {
+      "boringId": "B-1",
+      "groundwaterDepth": "17 to 17.4 ft",
+      "pageNumber": 35,
+      "evidenceSnippet": "Water observed at 17 feet; 17.4 feet while drilling."
+    },
+    {
+      "boringId": "B-2",
+      "groundwaterDepth": "16.9 to 17.2 ft",
+      "pageNumber": 36,
+      "evidenceSnippet": "Water observed at 16.9 feet; 17.2 feet while drilling."
+    },
+    {
+      "boringId": "B-3",
+      "groundwaterDepth": "Not observed (terminated at 8.7 ft refusal)",
+      "pageNumber": 37,
+      "evidenceSnippet": "Water not observed while drilling."
+    },
+    {
+      "boringId": "B-4",
+      "groundwaterDepth": "17.3 to 17.4 ft",
+      "pageNumber": 40,
+      "evidenceSnippet": "Water observed at 17.3 feet; 17.4 feet while drilling."
+    },
+    {
+      "boringId": "B-5",
+      "groundwaterDepth": "Not observed (terminated at 11 ft)",
+      "pageNumber": 41,
+      "evidenceSnippet": "Water not observed while drilling."
+    },
+    {
+      "boringId": "B-6",
+      "groundwaterDepth": "Not observed (terminated at 11 ft)",
+      "pageNumber": 42,
+      "evidenceSnippet": "Water not observed while drilling."
+    },
+    {
+      "boringId": "B-7",
+      "groundwaterDepth": "Not observed (terminated at 14.5 ft)",
+      "pageNumber": 43,
+      "evidenceSnippet": "Water not observed while drilling."
+    }
+  ],
+
+  "borings": [
+    {
+      "boringId": "B-1",
+      "terminationDepth": "20 ft",
+      "soilTypes": [
+        "Fill (clayey sand / silty sand) to ~6 ft",
+        "Native poorly graded sand (SP / SP-SM) to 20 ft"
+      ],
+      "redFlagIndicators": [],
+      "notes": "Fill over native sand. Groundwater at ~17 ft."
+    },
+    {
+      "boringId": "B-2",
+      "terminationDepth": "20 ft",
+      "soilTypes": [
+        "Fill to ~4 ft",
+        "Native poorly graded sand (SP) and silty sand (SM)"
+      ],
+      "redFlagIndicators": [],
+      "notes": "Groundwater at ~17 ft."
+    },
+    {
+      "boringId": "B-3",
+      "terminationDepth": "8.7 ft (Auger refusal on concrete)",
+      "soilTypes": [
+        "Fill with debris (wood, glass, Styrofoam)",
+        "Concrete obstruction at 8.7 ft"
+      ],
+      "redFlagIndicators": [
+        "Construction debris",
+        "Concrete obstruction",
+        "Undocumented fill"
+      ],
+      "notes": "Auger refusal at 8.7 ft. Offset borings B-3A and B-3B also refused at same depth."
+    },
+    {
+      "boringId": "B-4",
+      "terminationDepth": "20 ft",
+      "soilTypes": [
+        "Fill to ~4 ft",
+        "Native poorly graded sand with silt",
+        "Silty sand at depth"
+      ],
+      "redFlagIndicators": [],
+      "notes": "Groundwater at ~17 ft."
+    },
+    {
+      "boringId": "B-5",
+      "terminationDepth": "11 ft",
+      "soilTypes": [
+        "Fill",
+        "Poorly graded sand with silt",
+        "Poorly graded sand with gravel"
+      ],
+      "redFlagIndicators": [],
+      "notes": "Parking lot area boring."
+    },
+    {
+      "boringId": "B-6",
+      "terminationDepth": "11 ft",
+      "soilTypes": [
+        "Fill",
+        "Poorly graded sand with gravel",
+        "Poorly graded sand"
+      ],
+      "redFlagIndicators": [],
+      "notes": "Parking lot area boring."
+    },
+    {
+      "boringId": "B-7",
+      "terminationDepth": "14.5 ft",
+      "soilTypes": [
+        "Fill",
+        "Silty sand (very loose)",
+        "Poorly graded sand"
+      ],
+      "redFlagIndicators": [
+        "Very loose silty sand layer"
+      ],
+      "notes": "Trash enclosure area."
+    }
+  ],
+
+  "recommendations": {
+    "foundation": [
+      {
+        "summary": "Maximum net allowable bearing pressure of 3,000 psf on recompacted native sand or engineered fill.",
+        "pageReferences": [12],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      },
+      {
+        "summary": "Minimum embedment: 60 inches (exterior unheated), 42 inches (heated), 12 inches (interior heated).",
+        "pageReferences": [12],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      },
+      {
+        "summary": "Estimated total settlement less than about 1 inch.",
+        "pageReferences": [12],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      }
+    ],
+    "slab": [
+      {
+        "summary": "Minimum 6 inches of free-draining crushed aggregate beneath slabs.",
+        "pageReferences": [14],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      },
+      {
+        "summary": "Estimated modulus of subgrade reaction = 125 pci.",
+        "pageReferences": [14],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      }
+    ],
+    "pavement": [
+      {
+        "summary": "Asphalt section: 4 inches ACC (two lifts) over 8 inches aggregate base.",
+        "pageReferences": [16],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      },
+      {
+        "summary": "Concrete section: 5 inches PCC over 6 inches aggregate base.",
+        "pageReferences": [17],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      },
+      {
+        "summary": "Use 7-inch PCC in dumpster and heavy-load areas.",
+        "pageReferences": [17],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      }
+    ]
+  },
+
+  "riskFlags": [
+    {
+      "id": "rf-1",
+      "category": "Undocumented Fill",
+      "confidenceLevel": "high",
+      "pageReference": 4,
+      "evidence": "Existing fill encountered 4 to 8.7 feet thick.",
+      "description": "Undocumented fill unsuitable for direct foundation support; removal and replacement required under building."
+    },
+    {
+      "id": "rf-2",
+      "category": "Buried Debris",
+      "confidenceLevel": "high",
+      "pageReference": 4,
+      "evidence": "Wood, glass, Styrofoam and concrete observed in B-3.",
+      "description": "Construction debris and buried concrete may require excavation and disposal."
+    },
+    {
+      "id": "rf-3",
+      "category": "Groundwater",
+      "confidenceLevel": "moderate",
+      "pageReference": 4,
+      "evidence": "Groundwater observed at approximately 17 feet in three borings.",
+      "description": "Seasonal groundwater fluctuations may affect deep utilities and subgrade stability."
+    }
+  ],
+
+  "chatResponses": [
+    {
+      "trigger": "water",
+      "response": "Groundwater was encountered in three borings (B-1, B-2, B-4) at depths of approximately 17 feet. Other borings terminated above the water table."
+    },
+    {
+      "trigger": "fill",
+      "response": "Undocumented fill ranging from 4 to 8.7 feet thick was encountered across the site. Debris and buried concrete were found in the B-3 area."
+    },
+    {
+      "trigger": "risk",
+      "response": "Primary risks are undocumented fill, buried debris, and localized obstructions near B-3. The site is suitable for shallow foundations after proper removal and recompaction."
+    }
+  ]
+}

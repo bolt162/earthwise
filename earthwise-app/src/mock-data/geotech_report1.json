@@ -1,0 +1,187 @@
+{
+  "projectSummary": {
+    "projectName": "Riverside Commercial Plaza",
+    "uploadedFileName": "geotech_report1.pdf",
+    "dateAnalyzed": "2024-11-15",
+    "riskScore": 72,
+    "totalBorings": 6,
+    "groundwaterDetected": true,
+    "rockRefusalDetected": false
+  },
+  "waterTable": [
+    {
+      "boringId": "B-1",
+      "groundwaterDepth": "12.5 ft",
+      "pageNumber": 8,
+      "evidenceSnippet": "Groundwater was encountered at 12.5 feet below existing grade during drilling of Boring B-1."
+    },
+    {
+      "boringId": "B-2",
+      "groundwaterDepth": "14.0 ft",
+      "pageNumber": 9,
+      "evidenceSnippet": "Free water was noted at 14 feet in Boring B-2, consistent with regional water table data."
+    },
+    {
+      "boringId": "B-3",
+      "groundwaterDepth": "11.0 ft",
+      "pageNumber": 10,
+      "evidenceSnippet": "Groundwater seepage observed at 11 feet during auger advancement in Boring B-3."
+    },
+    {
+      "boringId": "B-4",
+      "groundwaterDepth": "Not encountered",
+      "pageNumber": 11,
+      "evidenceSnippet": "No groundwater was encountered to the maximum depth explored (25 ft) in Boring B-4."
+    },
+    {
+      "boringId": "B-5",
+      "groundwaterDepth": "13.5 ft",
+      "pageNumber": 12,
+      "evidenceSnippet": "Water table encountered at approximately 13.5 feet below ground surface in Boring B-5."
+    },
+    {
+      "boringId": "B-6",
+      "groundwaterDepth": "15.0 ft",
+      "pageNumber": 13,
+      "evidenceSnippet": "Groundwater was observed at 15 feet during drilling operations at Boring B-6."
+    }
+  ],
+  "borings": [
+    {
+      "boringId": "B-1",
+      "soilTypes": ["Lean Clay (CL)", "Sandy Clay", "Silty Sand (SM)"],
+      "redFlagIndicators": ["Expansive clay", "High plasticity"],
+      "refusalDepth": "N/A",
+      "notes": "Upper 5 feet consists of stiff lean clay with moderate plasticity. Transition to sandy clay below 10 feet."
+    },
+    {
+      "boringId": "B-2",
+      "soilTypes": ["Fill Material", "Lean Clay (CL)", "Sand (SP)"],
+      "redFlagIndicators": ["Uncontrolled fill"],
+      "refusalDepth": "N/A",
+      "notes": "Approximately 3 feet of uncontrolled fill encountered at surface. Native lean clay below fill layer."
+    },
+    {
+      "boringId": "B-3",
+      "soilTypes": ["Fat Clay (CH)", "Lean Clay (CL)"],
+      "redFlagIndicators": ["Fatty soil", "High swell potential"],
+      "refusalDepth": "N/A",
+      "notes": "Fat clay with high liquid limit (LL=62) present from 2 to 8 feet. Significant swell potential noted."
+    },
+    {
+      "boringId": "B-4",
+      "soilTypes": ["Sandy Clay", "Clayey Sand (SC)", "Dense Sand"],
+      "redFlagIndicators": [],
+      "refusalDepth": "N/A",
+      "notes": "Generally favorable soil conditions. Dense sand layer encountered below 15 feet."
+    },
+    {
+      "boringId": "B-5",
+      "soilTypes": ["Lean Clay (CL)", "Silt (ML)", "Silty Sand (SM)"],
+      "redFlagIndicators": ["Soft zones"],
+      "refusalDepth": "N/A",
+      "notes": "Soft clay zone from 6-10 feet with SPT N-values of 3-5 blows/foot. May require over-excavation."
+    },
+    {
+      "boringId": "B-6",
+      "soilTypes": ["Lean Clay (CL)", "Clayey Sand (SC)"],
+      "redFlagIndicators": [],
+      "refusalDepth": "N/A",
+      "notes": "Consistent soil profile. Moderate bearing capacity expected for shallow foundations."
+    }
+  ],
+  "recommendations": {
+    "slab": [
+      {
+        "summary": "Slab-on-grade should be constructed on a minimum 12-inch moisture-conditioned pad of select fill material.",
+        "pageReferences": [18, 19],
+        "keywordsDetected": ["moisture conditioning", "select fill", "slab-on-grade"]
+      },
+      {
+        "summary": "Scarification and recompaction of subgrade soils to 95% Standard Proctor density recommended.",
+        "pageReferences": [19],
+        "keywordsDetected": ["scarification", "recompaction", "Standard Proctor"]
+      }
+    ],
+    "foundation": [
+      {
+        "summary": "Drilled pier foundations recommended with minimum embedment of 15 feet into native soil below the fill zone.",
+        "pageReferences": [20, 21],
+        "keywordsDetected": ["drilled pier", "embedment", "native soil"]
+      },
+      {
+        "summary": "Shallow spread footings may be used if bearing on competent clay below 5 feet with minimum bearing pressure of 2,500 psf.",
+        "pageReferences": [21],
+        "keywordsDetected": ["spread footings", "bearing pressure"]
+      }
+    ],
+    "pavement": [
+      {
+        "summary": "Minimum 6-inch lime-stabilized subgrade recommended for all pavement areas due to expansive clay subgrade.",
+        "pageReferences": [22, 23],
+        "keywordsDetected": ["lime-stabilized", "subgrade", "expansive clay"]
+      },
+      {
+        "summary": "Undercut of soft subgrade soils to a depth of 12 inches below pavement section where SPT N-values are less than 5.",
+        "pageReferences": [23],
+        "keywordsDetected": ["undercut", "soft subgrade", "SPT"]
+      }
+    ]
+  },
+  "riskFlags": [
+    {
+      "id": "rf-1",
+      "category": "Over Excavation",
+      "confidenceLevel": "high",
+      "pageReference": 14,
+      "evidence": "Soft clay zones with SPT N-values of 3-5 blows/foot were encountered in Borings B-3 and B-5 between 6-10 feet depth.",
+      "description": "Areas near B-3 and B-5 may require over-excavation and replacement with engineered fill."
+    },
+    {
+      "id": "rf-2",
+      "category": "Moisture Control",
+      "confidenceLevel": "high",
+      "pageReference": 18,
+      "evidence": "High plasticity index (PI=35) clays detected in the upper soil profile across the site.",
+      "description": "Expansive clays require strict moisture conditioning during construction. Volume changes expected with moisture fluctuations."
+    },
+    {
+      "id": "rf-3",
+      "category": "Fatty Soils",
+      "confidenceLevel": "medium",
+      "pageReference": 10,
+      "evidence": "Fat clay (CH) with liquid limit of 62 encountered in Boring B-3 from 2 to 8 feet.",
+      "description": "Fatty soils present localized risk for foundation movement and slab distress."
+    },
+    {
+      "id": "rf-4",
+      "category": "Undercut",
+      "confidenceLevel": "medium",
+      "pageReference": 23,
+      "evidence": "Pavement subgrade in some areas shows inadequate bearing capacity with CBR values below 3%.",
+      "description": "Undercut and replacement with select fill recommended for pavement subgrade improvement."
+    },
+    {
+      "id": "rf-5",
+      "category": "Dewatering",
+      "confidenceLevel": "low",
+      "pageReference": 15,
+      "evidence": "Groundwater at 11-15 feet may impact deep excavations for utilities or pier installation.",
+      "description": "Temporary dewatering may be needed for excavations below 10 feet in some areas."
+    }
+  ],
+  "chatResponses": [
+    {
+      "trigger": "water",
+      "response": "Groundwater was encountered in 5 of 6 borings at depths ranging from 11 to 15 feet. Boring B-4 did not encounter water to the maximum depth explored."
+    },
+    {
+      "trigger": "foundation",
+      "response": "The report recommends drilled pier foundations with minimum 15-foot embedment, or shallow spread footings on competent clay with 2,500 psf bearing pressure."
+    },
+    {
+      "trigger": "risk",
+      "response": "Key risk flags include: over-excavation needs near B-3 and B-5, moisture control for expansive clays, fatty soils in B-3, and potential dewatering for deep excavations."
+    }
+  ]
+}
