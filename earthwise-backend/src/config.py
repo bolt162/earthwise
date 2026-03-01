@@ -8,7 +8,8 @@ class Settings(BaseSettings):
     upload_dir: str = "./uploads"
     database_url: str = "sqlite:///./earthwise.db"
     port: int = 8000
-    max_upload_size_mb: int = 100
+    max_upload_size_mb: int = 10
+    max_uploads_per_session: int = 5
     pages_per_llm_chunk: int = 8
 
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}

@@ -1,10 +1,15 @@
 import { create } from 'zustand';
 import type { AnalysisData, ChatMessage, SidebarPage } from '../types';
 import { appConfig } from '../config';
+import { getOrCreateSessionId } from '../utils/session';
 
 interface AppState {
   // Environment
   environmentMode: typeof appConfig.mode;
+
+  // Session
+  sessionId: string;
+  uploadCount: number;
 
   // Project state
   currentProject: string | null;
@@ -17,6 +22,9 @@ interface AppState {
   isChatOpen: boolean;
   isLoading: boolean;
   error: string | null;
+
+  // Feedback state
+  feedbackDismissedFor: string | null;
 
   // Chat state
   chatMessages: ChatMessage[];
@@ -35,10 +43,16 @@ interface AppState {
   addChatMessage: (message: ChatMessage) => void;
   clearChatMessages: () => void;
   resetProject: () => void;
+  setUploadCount: (count: number) => void;
+  incrementUploadCount: () => void;
+  setFeedbackDismissed: (reportName: string) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
   environmentMode: appConfig.mode,
+
+  sessionId: getOrCreateSessionId(),
+  uploadCount: 0,
 
   currentProject: null,
   uploadedFileName: null,
@@ -49,6 +63,8 @@ export const useAppStore = create<AppState>((set) => ({
   isChatOpen: false,
   isLoading: false,
   error: null,
+
+  feedbackDismissedFor: null,
 
   chatMessages: [],
 
@@ -73,4 +89,9 @@ export const useAppStore = create<AppState>((set) => ({
       chatMessages: [],
       error: null,
     }),
+  setUploadCount: (count) => set({ uploadCount: count }),
+  incrementUploadCount: () =>
+    set((state) => ({ uploadCount: state.uploadCount + 1 })),
+  setFeedbackDismissed: (reportName) =>
+    set({ feedbackDismissedFor: reportName }),
 }));

@@ -1,3 +1,6 @@
+import urllib.parse
+import urllib.request
+import json
 from datetime import datetime
 
 from src.schemas import (
@@ -11,6 +14,29 @@ from src.schemas import (
     ExtractionResult,
 )
 from src.models import Report
+
+
+def _geocode_address(address: str) -> tuple[float, float] | None:
+    """Geocode an address using OpenStreetMap Nominatim (free, no API key).
+
+    Returns (latitude, longitude) or None on failure.
+    """
+    try:
+        params = urllib.parse.urlencode({"q": address, "format": "json", "limit": "1"})
+        url = f"https://nominatim.openstreetmap.org/search?{params}"
+        req = urllib.request.Request(url, headers={"User-Agent": "Earthwise/1.0"})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = json.loads(resp.read().decode())
+        if data:
+            lat = float(data[0]["lat"])
+            lon = float(data[0]["lon"])
+            print(f"  [GEOCODE] '{address}' → ({lat}, {lon})")
+            return lat, lon
+        print(f"  [GEOCODE] No results for '{address}'")
+        return None
+    except Exception as e:
+        print(f"  [GEOCODE] Failed for '{address}': {e}")
+        return None
 
 
 def build_analysis_data(report: Report, extraction: ExtractionResult) -> AnalysisData:
@@ -37,6 +63,23 @@ def build_analysis_data(report: Report, extraction: ExtractionResult) -> Analysi
     # Compute risk score
     risk_score = _compute_risk_score(extraction, groundwater_detected, rock_refusal_detected)
 
+    # Resolve site-level coordinates
+    # Priority: metadata LLM extraction → geocode address
+    site_lat = meta.site_latitude
+    site_lon = meta.site_longitude
+
+    if site_lat is None or site_lon is None:
+        # Try geocoding the extracted address
+        if meta.location:
+            coords = _geocode_address(meta.location)
+            if coords:
+                site_lat, site_lon = coords
+
+    if site_lat is not None and site_lon is not None:
+        print(f"  Site coordinates: ({site_lat}, {site_lon})")
+    else:
+        print(f"  Site coordinates: not available")
+
     # Build project summary
     project_summary = ProjectSummary(
         projectName=meta.project_name or report.original_filename.replace(".pdf", ""),
@@ -46,6 +89,8 @@ def build_analysis_data(report: Report, extraction: ExtractionResult) -> Analysi
         totalBorings=len(borings),
         groundwaterDetected=groundwater_detected,
         rockRefusalDetected=rock_refusal_detected,
+        siteLatitude=site_lat,
+        siteLongitude=site_lon,
     )
 
     print(f"\n  [BUILD_OUTPUT] Project Summary:")
@@ -99,12 +144,18 @@ def build_analysis_data(report: Report, extraction: ExtractionResult) -> Analysi
         if b.refusal_depth is not None:
             refusal_str = f"{b.refusal_depth} ft"
 
+        # Resolve boring coordinates: boring-level → site-level fallback
+        boring_lat = b.latitude if b.latitude is not None else site_lat
+        boring_lon = b.longitude if b.longitude is not None else site_lon
+
         soil_chars.append(SoilCharacteristic(
             boringId=b.boring_id,
             soilTypes=soil_types if soil_types else ["No data extracted"],
             redFlagIndicators=b.red_flag_indicators,
             refusalDepth=refusal_str,
             notes=b.notes or "",
+            latitude=boring_lat,
+            longitude=boring_lon,
         ))
 
     # Build recommendations

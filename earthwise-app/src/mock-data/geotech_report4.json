@@ -6,7 +6,9 @@
     "riskScore": 35,
     "totalBorings": 5,
     "groundwaterDetected": false,
-    "rockRefusalDetected": true
+    "rockRefusalDetected": true,
+    "siteLatitude": 35.2271,
+    "siteLongitude": -80.8431
   },
   "waterTable": [
     {
@@ -46,35 +48,45 @@
       "soilTypes": ["Sandy Lean Clay (CL)", "Weathered Sandstone"],
       "redFlagIndicators": [],
       "refusalDepth": "28.0 ft",
-      "notes": "Stiff to very stiff clay profile. Excellent bearing capacity. Refusal on weathered sandstone."
+      "notes": "Stiff to very stiff clay profile. Excellent bearing capacity. Refusal on weathered sandstone.",
+      "latitude": 35.2275,
+      "longitude": -80.8425
     },
     {
       "boringId": "B-2",
       "soilTypes": ["Lean Clay (CL)", "Clayey Sand (SC)", "Sandstone"],
       "redFlagIndicators": [],
       "refusalDepth": "24.0 ft",
-      "notes": "Uniform conditions with good SPT values throughout. Sandstone at 24 feet."
+      "notes": "Uniform conditions with good SPT values throughout. Sandstone at 24 feet.",
+      "latitude": 35.2273,
+      "longitude": -80.8435
     },
     {
       "boringId": "B-3",
       "soilTypes": ["Sandy Clay", "Lean Clay (CL)", "Dense Gravel", "Sandstone"],
       "redFlagIndicators": [],
       "refusalDepth": "30.0 ft",
-      "notes": "Very consistent profile. Dense gravel transition zone above bedrock."
+      "notes": "Very consistent profile. Dense gravel transition zone above bedrock.",
+      "latitude": 35.2270,
+      "longitude": -80.8428
     },
     {
       "boringId": "B-4",
       "soilTypes": ["Lean Clay (CL)", "Sandy Lean Clay", "Weathered Rock"],
       "redFlagIndicators": [],
       "refusalDepth": "26.0 ft",
-      "notes": "Favorable conditions. Moderate to high SPT values increasing with depth."
+      "notes": "Favorable conditions. Moderate to high SPT values increasing with depth.",
+      "latitude": 35.2268,
+      "longitude": -80.8438
     },
     {
       "boringId": "B-5",
       "soilTypes": ["Lean Clay (CL)", "Silty Clay", "Sandstone"],
       "redFlagIndicators": [],
       "refusalDepth": "25.0 ft",
-      "notes": "Good bearing soils. Sandstone at moderate depth suitable for pier bearing."
+      "notes": "Good bearing soils. Sandstone at moderate depth suitable for pier bearing.",
+      "latitude": 35.2266,
+      "longitude": -80.8430
     }
   ],
   "recommendations": {

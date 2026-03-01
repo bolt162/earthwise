@@ -23,6 +23,7 @@ export default function FileUpload() {
   const setLoading = useAppStore((s) => s.setLoading);
   const setError = useAppStore((s) => s.setError);
   const clearChatMessages = useAppStore((s) => s.clearChatMessages);
+  const incrementUploadCount = useAppStore((s) => s.incrementUploadCount);
 
   const [dragActive, setDragActive] = useState(false);
   const [uploadState, setUploadState] = useState<
@@ -57,6 +58,14 @@ export default function FileUpload() {
       return;
     }
 
+    // File size limit: 10 MB
+    const MAX_FILE_SIZE = 10 * 1024 * 1024;
+    if (!mockMode && file.size > MAX_FILE_SIZE) {
+      setUploadState('error');
+      setErrorMessage('File exceeds 10 MB limit. Please upload a smaller file.');
+      return;
+    }
+
     setUploadState('uploading');
     setProgressInfo({ stage: null, percent: 0 });
     setLoading(true);
@@ -73,6 +82,7 @@ export default function FileUpload() {
       setUploadedFileName(fileName);
       setAnalysisData(data);
       setCurrentProject(data.projectSummary.projectName);
+      incrementUploadCount();
       setUploadState('success');
 
       setTimeout(() => {

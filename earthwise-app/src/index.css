@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #ffffff;
@@ -162,4 +163,64 @@
   100% {
     background-position: -200% 0;
   }
+}
+
+/* Landing page styles */
+.landing-hero-bg {
+  position: relative;
+}
+
+.landing-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 60% 30%,
+    color-mix(in srgb, var(--accent-color) 8%, transparent) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.landing-waitlist-bg {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-color) 6%, var(--bg-secondary)) 0%,
+    var(--bg-secondary) 100%
+  );
+}
+
+.landing-gradient-text {
+  background: linear-gradient(135deg, var(--accent-color) 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes landing-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.landing-float-animation {
+  animation: landing-float 4s ease-in-out infinite;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-slide-up {
+  animation: slideUp 0.4s ease-out;
 }

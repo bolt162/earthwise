@@ -6,7 +6,9 @@
     "riskScore": 72,
     "totalBorings": 6,
     "groundwaterDetected": true,
-    "rockRefusalDetected": false
+    "rockRefusalDetected": false,
+    "siteLatitude": 32.7767,
+    "siteLongitude": -96.7970
   },
   "waterTable": [
     {
@@ -52,42 +54,54 @@
       "soilTypes": ["Lean Clay (CL)", "Sandy Clay", "Silty Sand (SM)"],
       "redFlagIndicators": ["Expansive clay", "High plasticity"],
       "refusalDepth": "N/A",
-      "notes": "Upper 5 feet consists of stiff lean clay with moderate plasticity. Transition to sandy clay below 10 feet."
+      "notes": "Upper 5 feet consists of stiff lean clay with moderate plasticity. Transition to sandy clay below 10 feet.",
+      "latitude": 32.7772,
+      "longitude": -96.7965
     },
     {
       "boringId": "B-2",
       "soilTypes": ["Fill Material", "Lean Clay (CL)", "Sand (SP)"],
       "redFlagIndicators": ["Uncontrolled fill"],
       "refusalDepth": "N/A",
-      "notes": "Approximately 3 feet of uncontrolled fill encountered at surface. Native lean clay below fill layer."
+      "notes": "Approximately 3 feet of uncontrolled fill encountered at surface. Native lean clay below fill layer.",
+      "latitude": 32.7770,
+      "longitude": -96.7972
     },
     {
       "boringId": "B-3",
       "soilTypes": ["Fat Clay (CH)", "Lean Clay (CL)"],
       "redFlagIndicators": ["Fatty soil", "High swell potential"],
       "refusalDepth": "N/A",
-      "notes": "Fat clay with high liquid limit (LL=62) present from 2 to 8 feet. Significant swell potential noted."
+      "notes": "Fat clay with high liquid limit (LL=62) present from 2 to 8 feet. Significant swell potential noted.",
+      "latitude": 32.7768,
+      "longitude": -96.7968
     },
     {
       "boringId": "B-4",
       "soilTypes": ["Sandy Clay", "Clayey Sand (SC)", "Dense Sand"],
       "redFlagIndicators": [],
       "refusalDepth": "N/A",
-      "notes": "Generally favorable soil conditions. Dense sand layer encountered below 15 feet."
+      "notes": "Generally favorable soil conditions. Dense sand layer encountered below 15 feet.",
+      "latitude": 32.7765,
+      "longitude": -96.7975
     },
     {
       "boringId": "B-5",
       "soilTypes": ["Lean Clay (CL)", "Silt (ML)", "Silty Sand (SM)"],
       "redFlagIndicators": ["Soft zones"],
       "refusalDepth": "N/A",
-      "notes": "Soft clay zone from 6-10 feet with SPT N-values of 3-5 blows/foot. May require over-excavation."
+      "notes": "Soft clay zone from 6-10 feet with SPT N-values of 3-5 blows/foot. May require over-excavation.",
+      "latitude": 32.7763,
+      "longitude": -96.7962
     },
     {
       "boringId": "B-6",
       "soilTypes": ["Lean Clay (CL)", "Clayey Sand (SC)"],
       "redFlagIndicators": [],
       "refusalDepth": "N/A",
-      "notes": "Consistent soil profile. Moderate bearing capacity expected for shallow foundations."
+      "notes": "Consistent soil profile. Moderate bearing capacity expected for shallow foundations.",
+      "latitude": 32.7760,
+      "longitude": -96.7970
     }
   ],
   "recommendations": {

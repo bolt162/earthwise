@@ -7,7 +7,6 @@ import {
   AlertTriangle,
   MessageSquare,
   Settings,
-  LogOut,
   HelpCircle,
 } from 'lucide-react';
 import { useAppStore } from '../store';
@@ -64,7 +63,7 @@ export default function Sidebar() {
 
         <div className="mt-auto px-4 space-y-1">
           <Link
-            to="/help"
+            to="/settings"
             className="flex items-center py-3 px-3 rounded-md hover:bg-[var(--bg-tertiary)] text-[var(--sidebar-text)]"
           >
             <HelpCircle size={20} />
@@ -76,16 +75,6 @@ export default function Sidebar() {
               Help & Support
             </span>
           </Link>
-          <button className="flex items-center w-full text-left py-3 px-3 rounded-md hover:bg-[var(--bg-tertiary)] text-[var(--sidebar-text)]">
-            <LogOut size={20} />
-            <span
-              className={`ml-3 ${
-                isSidebarOpen ? 'block' : 'hidden'
-              } font-[var(--font-oswald)] text-sm`}
-            >
-              Logout
-            </span>
-          </button>
         </div>
       </nav>
     </div>

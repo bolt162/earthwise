@@ -1,10 +1,12 @@
 import json
 import time
 import traceback
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 
 from sqlalchemy.orm import Session
 
+from src.database import SessionLocal
 from src.models import Report, ProcessingJob
 from src.pipeline.text_extract import extract_text
 from src.pipeline.table_extract import extract_tables
@@ -12,6 +14,32 @@ from src.pipeline.section_detect import detect_sections
 from src.pipeline.llm_extract import run_llm_extraction
 from src.pipeline.normalize import normalize_extraction
 from src.pipeline.build_output import build_analysis_data
+
+
+# ── Thread wrappers (each gets its own DB session) ──────────────────────────
+
+
+def _text_extract_thread(report_id: int) -> None:
+    """Run text extraction in a dedicated thread with its own DB session."""
+    db = SessionLocal()
+    try:
+        report = db.query(Report).get(report_id)
+        extract_text(report, db)
+    finally:
+        db.close()
+
+
+def _table_extract_thread(report_id: int) -> None:
+    """Run table extraction in a dedicated thread with its own DB session."""
+    db = SessionLocal()
+    try:
+        report = db.query(Report).get(report_id)
+        extract_tables(report, db)
+    finally:
+        db.close()
+
+
+# ── Pipeline ────────────────────────────────────────────────────────────────
 
 
 def run_pipeline(report: Report, job: ProcessingJob, db: Session) -> None:
@@ -24,23 +52,27 @@ def run_pipeline(report: Report, job: ProcessingJob, db: Session) -> None:
     print(f"{'='*80}\n")
 
     try:
-        # Stage 2: Text extraction
+        # Stage 2+3: Text extraction and Table extraction in parallel
         _update_job(job, "text_extract", 10, db)
         stage_start = time.time()
-        print(f"[STAGE 2/7] TEXT EXTRACTION — Starting...")
-        pages = extract_text(report, db)
-        print(f"[STAGE 2/7] TEXT EXTRACTION — Done in {time.time() - stage_start:.1f}s")
+        print(f"[STAGE 2+3] TEXT + TABLE EXTRACTION — Starting in parallel...")
+
+        with ThreadPoolExecutor(max_workers=2, thread_name_prefix="extract") as pool:
+            text_future = pool.submit(_text_extract_thread, report.id)
+            table_future = pool.submit(_table_extract_thread, report.id)
+
+            # Wait for both — propagate any exception
+            text_future.result()
+            table_future.result()
+
+        # Ensure main session sees the data committed by parallel threads
+        db.expire_all()
+
+        text_time = time.time() - stage_start
+        print(f"[STAGE 2+3] TEXT + TABLE EXTRACTION — Done in {text_time:.1f}s (parallel)")
         print()
 
-        # Stage 3: Table extraction
-        _update_job(job, "table_extract", 20, db)
-        stage_start = time.time()
-        print(f"[STAGE 3/7] TABLE EXTRACTION — Starting...")
-        tables = extract_tables(report, db)
-        print(f"[STAGE 3/7] TABLE EXTRACTION — Done in {time.time() - stage_start:.1f}s")
-        print()
-
-        # Stage 4: Section detection
+        # Stage 4: Section detection (needs pages from text extraction)
         _update_job(job, "section_detect", 30, db)
         stage_start = time.time()
         print(f"[STAGE 4/7] SECTION DETECTION — Starting...")

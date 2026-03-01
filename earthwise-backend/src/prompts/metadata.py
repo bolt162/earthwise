@@ -8,11 +8,14 @@ Extract the following fields:
 - firm_name: The geotechnical engineering firm that authored the report (e.g., "Terracon", "Geosyntec Consultants")
 - report_date: The date of the report in YYYY-MM-DD format (if stated)
 - location: The project location (city, state, address, or description)
+- site_latitude: Site latitude in decimal degrees if explicitly stated (number or null)
+- site_longitude: Site longitude in decimal degrees if explicitly stated (number or null)
 
 RULES:
 - Extract ONLY values explicitly stated in the text.
 - Use null for any field not found in the text.
 - Do NOT infer or fabricate any values.
+- Convert DMS (degrees-minutes-seconds) coordinates to decimal degrees if needed. West longitudes must be negative.
 
 Return valid JSON in this exact format:
 {
@@ -20,7 +23,9 @@ Return valid JSON in this exact format:
   "client_name": "string or null",
   "firm_name": "string or null",
   "report_date": "YYYY-MM-DD or null",
-  "location": "string or null"
+  "location": "string or null",
+  "site_latitude": null,
+  "site_longitude": null
 }
 
 Return ONLY the JSON object, no other text."""

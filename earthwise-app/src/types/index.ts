@@ -6,6 +6,8 @@ export interface ProjectSummary {
   totalBorings: number;
   groundwaterDetected: boolean;
   rockRefusalDetected: boolean;
+  siteLatitude: number | null;
+  siteLongitude: number | null;
 }
 
 export interface WaterTableEntry {
@@ -21,6 +23,8 @@ export interface SoilCharacteristic {
   redFlagIndicators: string[];
   refusalDepth: string;
   notes: string;
+  latitude: number | null;
+  longitude: number | null;
 }
 
 export interface RecommendationItem {

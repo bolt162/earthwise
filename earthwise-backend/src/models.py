@@ -4,6 +4,16 @@ from sqlalchemy.orm import relationship
 from src.database import Base
 
 
+class Session(Base):
+    __tablename__ = "sessions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(Text, unique=True, nullable=False, index=True)
+    created_at = Column(Text, server_default="(datetime('now'))")
+    upload_count = Column(Integer, default=0)
+    last_active = Column(Text, server_default="(datetime('now'))")
+
+
 class Report(Base):
     __tablename__ = "reports"
 
@@ -16,6 +26,7 @@ class Report(Base):
     is_scanned = Column(Boolean, default=False)
     status = Column(Text, default="uploaded")
     error_message = Column(Text)
+    session_id = Column(Text, index=True)
 
     project_name = Column(Text)
     client_name = Column(Text)
@@ -75,3 +86,24 @@ class ProcessingJob(Base):
     completed_at = Column(Text)
 
     report = relationship("Report", back_populates="jobs")
+
+
+class Feedback(Base):
+    __tablename__ = "feedback"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(Text, index=True)
+    rating = Column(Integer)
+    comment = Column(Text)
+    email = Column(Text)
+    report_name = Column(Text)
+    created_at = Column(Text, server_default="(datetime('now'))")
+
+
+class Waitlist(Base):
+    __tablename__ = "waitlist"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(Text, nullable=False)
+    source = Column(Text, nullable=False)
+    created_at = Column(Text, server_default="(datetime('now'))")

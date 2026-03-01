@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import EmptyState from '../components/EmptyState';
+import FeedbackPopup from '../components/FeedbackPopup';
 import { SkeletonCard, SkeletonTable } from '../components/SkeletonLoader';
 
 export default function DashboardPage() {
@@ -282,6 +283,9 @@ export default function DashboardPage() {
           />
         </div>
       </div>
+
+      {/* Feedback popup */}
+      <FeedbackPopup />
     </div>
   );
 }

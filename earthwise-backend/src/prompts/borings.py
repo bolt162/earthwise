@@ -8,6 +8,8 @@ For EACH boring/test pit, extract:
 - termination_depth: Total depth drilled in feet (number or null)
 - refusal_depth: Depth of auger/drill refusal if encountered (number or null)
 - refusal_material: Material causing refusal if stated (string or null)
+- latitude: Latitude of the boring location in decimal degrees if stated on the boring log (number or null)
+- longitude: Longitude of the boring location in decimal degrees if stated on the boring log (number or null)
 - strata: Array of soil layers, each with:
   - depth_top: Top depth in feet (number)
   - depth_bottom: Bottom depth in feet (number or null)
@@ -35,6 +37,7 @@ CRITICAL RULES:
 - Use null for missing values. NEVER invent data.
 - If groundwater was NOT encountered, set is_encountered to false and depth to null.
 - Combine data from multiple pages if the same boring appears across pages.
+- Extract coordinates exactly as stated. Convert DMS (degrees-minutes-seconds) to decimal degrees if needed. West longitudes must be negative.
 
 Return valid JSON in this exact format:
 {
@@ -45,6 +48,8 @@ Return valid JSON in this exact format:
       "termination_depth": 25.0,
       "refusal_depth": null,
       "refusal_material": null,
+      "latitude": null,
+      "longitude": null,
       "strata": [...],
       "groundwater_observations": [...],
       "red_flag_indicators": [...],

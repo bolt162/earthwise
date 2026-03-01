@@ -1,13 +1,31 @@
 import FileUpload from '../components/FileUpload';
+import UsageBanner from '../components/UsageBanner';
+import UploadLimitWall from '../components/UploadLimitWall';
 import { useAppStore } from '../store';
 import { FileText, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { isBackendMode } from '../config';
+import { fetchSessionInfo } from '../services';
 
 export default function ProjectsPage() {
   const analysisData = useAppStore((s) => s.analysisData);
   const uploadedFileName = useAppStore((s) => s.uploadedFileName);
   const resetProject = useAppStore((s) => s.resetProject);
+  const uploadCount = useAppStore((s) => s.uploadCount);
+  const setUploadCount = useAppStore((s) => s.setUploadCount);
   const navigate = useNavigate();
+
+  const limitReached = uploadCount >= 5;
+
+  // Fetch session info on mount to sync upload count
+  useEffect(() => {
+    if (isBackendMode()) {
+      fetchSessionInfo()
+        .then((info) => setUploadCount(info.uploadCount))
+        .catch(() => {});
+    }
+  }, [setUploadCount]);
 
   return (
     <div className="animate-fade-in max-w-4xl mx-auto">
@@ -69,7 +87,8 @@ export default function ProjectsPage() {
         >
           {analysisData ? 'Load Another Report' : 'Upload a Report'}
         </h2>
-        <FileUpload />
+        <UsageBanner />
+        {limitReached ? <UploadLimitWall /> : <FileUpload />}
       </div>
     </div>
   );

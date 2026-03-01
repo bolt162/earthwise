@@ -6,7 +6,9 @@
     "riskScore": 88,
     "totalBorings": 10,
     "groundwaterDetected": true,
-    "rockRefusalDetected": false
+    "rockRefusalDetected": false,
+    "siteLatitude": 32.7935,
+    "siteLongitude": -79.9295
   },
   "waterTable": [
     {
@@ -76,70 +78,90 @@
       "soilTypes": ["Organic Clay (OH)", "Soft Clay (CH)", "Silty Sand"],
       "redFlagIndicators": ["Organic soils", "Very soft", "Compressible"],
       "refusalDepth": "N/A",
-      "notes": "Organic clay layer from 0-4 feet. Very soft, highly compressible. Not suitable for direct support."
+      "notes": "Organic clay layer from 0-4 feet. Very soft, highly compressible. Not suitable for direct support.",
+      "latitude": 32.7940,
+      "longitude": -79.9290
     },
     {
       "boringId": "B-2",
       "soilTypes": ["Organic Silt (OL)", "Fat Clay (CH)", "Sandy Silt"],
       "redFlagIndicators": ["Organic content", "High plasticity"],
       "refusalDepth": "N/A",
-      "notes": "Organic silt in upper 3 feet. Fat clay below with PI of 42."
+      "notes": "Organic silt in upper 3 feet. Fat clay below with PI of 42.",
+      "latitude": 32.7938,
+      "longitude": -79.9298
     },
     {
       "boringId": "B-3",
       "soilTypes": ["Peat", "Organic Clay", "Soft Clay"],
       "redFlagIndicators": ["Peat", "Marsh soils", "Extreme compression"],
       "refusalDepth": "N/A",
-      "notes": "Peat layer from 0-3 feet. Complete removal required. Unsuitable for any structural support."
+      "notes": "Peat layer from 0-3 feet. Complete removal required. Unsuitable for any structural support.",
+      "latitude": 32.7936,
+      "longitude": -79.9285
     },
     {
       "boringId": "B-4",
       "soilTypes": ["Sandy Clay", "Lean Clay (CL)", "Dense Sand"],
       "redFlagIndicators": ["Soft upper soils"],
       "refusalDepth": "N/A",
-      "notes": "Better conditions than eastern borings. Dense sand below 15 feet provides good bearing."
+      "notes": "Better conditions than eastern borings. Dense sand below 15 feet provides good bearing.",
+      "latitude": 32.7933,
+      "longitude": -79.9300
     },
     {
       "boringId": "B-5",
       "soilTypes": ["Organic Clay", "Soft Clay (CL)", "Silty Sand (SM)"],
       "redFlagIndicators": ["Organic content", "Soft zones"],
       "refusalDepth": "N/A",
-      "notes": "Organic clay layer to 5 feet. Soft clay zone from 5-12 feet."
+      "notes": "Organic clay layer to 5 feet. Soft clay zone from 5-12 feet.",
+      "latitude": 32.7930,
+      "longitude": -79.9292
     },
     {
       "boringId": "B-6",
       "soilTypes": ["Lean Clay (CL)", "Sandy Clay", "Sand (SP)"],
       "redFlagIndicators": ["Moderate softness"],
       "refusalDepth": "N/A",
-      "notes": "Marginally adequate upper soils. Improvement recommended."
+      "notes": "Marginally adequate upper soils. Improvement recommended.",
+      "latitude": 32.7942,
+      "longitude": -79.9302
     },
     {
       "boringId": "B-7",
       "soilTypes": ["Organic Silt", "Fat Clay (CH)", "Silt (ML)"],
       "redFlagIndicators": ["Organic soils", "Fatty clay", "Marshy"],
       "refusalDepth": "N/A",
-      "notes": "Most challenging boring. Organic and fatty soils to 8 feet depth."
+      "notes": "Most challenging boring. Organic and fatty soils to 8 feet depth.",
+      "latitude": 32.7928,
+      "longitude": -79.9288
     },
     {
       "boringId": "B-8",
       "soilTypes": ["Lean Clay (CL)", "Sandy Lean Clay", "Silty Sand"],
       "redFlagIndicators": ["Soft zones"],
       "refusalDepth": "N/A",
-      "notes": "Moderate conditions. Soft clay zone from 3-8 feet."
+      "notes": "Moderate conditions. Soft clay zone from 3-8 feet.",
+      "latitude": 32.7935,
+      "longitude": -79.9305
     },
     {
       "boringId": "B-9",
       "soilTypes": ["Sandy Clay", "Clay (CL)", "Dense Sand"],
       "redFlagIndicators": [],
       "refusalDepth": "N/A",
-      "notes": "Relatively favorable conditions in western portion of site."
+      "notes": "Relatively favorable conditions in western portion of site.",
+      "latitude": 32.7932,
+      "longitude": -79.9298
     },
     {
       "boringId": "B-10",
       "soilTypes": ["Organic Clay", "Soft Clay", "Silt"],
       "redFlagIndicators": ["Organic content", "Compressible"],
       "refusalDepth": "N/A",
-      "notes": "Organic layer near surface. Ground improvement needed."
+      "notes": "Organic layer near surface. Ground improvement needed.",
+      "latitude": 32.7926,
+      "longitude": -79.9295
     }
   ],
   "recommendations": {

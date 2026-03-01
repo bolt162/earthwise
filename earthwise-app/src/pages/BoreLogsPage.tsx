@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AlertTriangle, ChevronDown, ChevronUp, Upload } from 'lucide-react';
 import { useAppStore } from '../store';
 import EmptyState from '../components/EmptyState';
+import BoringMap from '../components/BoringMap';
 
 export default function BoreLogsPage() {
   const analysisData = useAppStore((s) => s.analysisData);
@@ -27,7 +28,7 @@ export default function BoreLogsPage() {
     );
   }
 
-  const { waterTable, borings } = analysisData;
+  const { waterTable, borings, projectSummary } = analysisData;
 
   return (
     <div className="animate-fade-in">
@@ -37,6 +38,13 @@ export default function BoreLogsPage() {
       >
         Bore Logs
       </h1>
+
+      {/* Boring Locations Map */}
+      <BoringMap
+        borings={borings}
+        siteLatitude={projectSummary.siteLatitude}
+        siteLongitude={projectSummary.siteLongitude}
+      />
 
       {/* Water Table */}
       <div className="bg-[var(--card-bg)] rounded-lg shadow-lg mb-6">

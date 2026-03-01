@@ -12,6 +12,8 @@ class ProjectSummary(BaseModel):
     totalBorings: int
     groundwaterDetected: bool
     rockRefusalDetected: bool
+    siteLatitude: float | None = None
+    siteLongitude: float | None = None
 
 
 class WaterTableEntry(BaseModel):
@@ -27,6 +29,8 @@ class SoilCharacteristic(BaseModel):
     redFlagIndicators: list[str]
     refusalDepth: str
     notes: str
+    latitude: float | None = None
+    longitude: float | None = None
 
 
 class RecommendationItem(BaseModel):
@@ -95,6 +99,24 @@ class ChatResponse(BaseModel):
     response: str
 
 
+class SessionInfo(BaseModel):
+    sessionId: str
+    uploadCount: int
+    createdAt: str
+
+
+class FeedbackRequest(BaseModel):
+    rating: int | None = None
+    comment: str | None = None
+    email: str | None = None
+    reportName: str | None = None
+
+
+class WaitlistRequest(BaseModel):
+    email: str
+    source: str
+
+
 # ── Internal intermediate extraction shapes ──
 
 
@@ -104,6 +126,8 @@ class ExtractedMetadata(BaseModel):
     firm_name: str | None = None
     report_date: str | None = None
     location: str | None = None
+    site_latitude: float | None = None
+    site_longitude: float | None = None
 
 
 class ExtractedStratum(BaseModel):
@@ -132,6 +156,8 @@ class ExtractedBoring(BaseModel):
     termination_depth: float | None = None
     refusal_depth: float | None = None
     refusal_material: str | None = None
+    latitude: float | None = None
+    longitude: float | None = None
     strata: list[ExtractedStratum] = []
     groundwater_observations: list[ExtractedGroundwater] = []
     red_flag_indicators: list[str] = []

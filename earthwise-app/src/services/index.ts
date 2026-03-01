@@ -1,5 +1,6 @@
 import { isMockMode, MOCK_FILE_MAP, appConfig } from '../config';
 import type { AnalysisData } from '../types';
+import { getOrCreateSessionId } from '../utils/session';
 
 const mockModules: Record<string, () => Promise<{ default: AnalysisData }>> = {
   geotech_report1: () => import('../mock-data/geotech_report1.json'),
@@ -7,6 +8,16 @@ const mockModules: Record<string, () => Promise<{ default: AnalysisData }>> = {
   geotech_report3: () => import('../mock-data/geotech_report3.json'),
   geotech_report4: () => import('../mock-data/geotech_report4.json'),
 };
+
+// ── Shared headers ──
+
+function getSessionHeaders(): Record<string, string> {
+  return { 'X-Session-ID': getOrCreateSessionId() };
+}
+
+function getJsonHeaders(): Record<string, string> {
+  return { 'Content-Type': 'application/json', ...getSessionHeaders() };
+}
 
 // ── Backend API response types ──
 
@@ -25,6 +36,26 @@ interface JobStatusResponse {
   progressPercent: number;
 }
 
+interface SessionInfoResponse {
+  sessionId: string;
+  uploadCount: number;
+  createdAt: string;
+}
+
+// ── Session info ──
+
+export async function fetchSessionInfo(): Promise<SessionInfoResponse> {
+  const response = await fetch(`${appConfig.apiBaseUrl}/api/session`, {
+    headers: getSessionHeaders(),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch session info: ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
 // ── Upload & polling for backend mode ──
 
 export async function uploadFileToBackend(file: File): Promise<UploadResponse> {
@@ -33,6 +64,7 @@ export async function uploadFileToBackend(file: File): Promise<UploadResponse> {
 
   const response = await fetch(`${appConfig.apiBaseUrl}/api/upload`, {
     method: 'POST',
+    headers: getSessionHeaders(),
     body: formData,
   });
 
@@ -53,7 +85,9 @@ export async function pollJobUntilComplete(
   const startTime = Date.now();
 
   while (true) {
-    const response = await fetch(`${appConfig.apiBaseUrl}/api/jobs/${jobId}`);
+    const response = await fetch(`${appConfig.apiBaseUrl}/api/jobs/${jobId}`, {
+      headers: getSessionHeaders(),
+    });
     if (!response.ok) {
       throw new Error(`Failed to check job status: ${response.statusText}`);
     }
@@ -125,7 +159,7 @@ async function loadMockData(fileName: string): Promise<AnalysisData> {
 async function fetchAnalysisFromBackend(fileName: string): Promise<AnalysisData> {
   const response = await fetch(`${appConfig.apiBaseUrl}/api/analyze`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getJsonHeaders(),
     body: JSON.stringify({ fileName }),
   });
 
@@ -176,7 +210,7 @@ async function fetchChatFromBackend(
 ): Promise<string> {
   const response = await fetch(`${appConfig.apiBaseUrl}/api/chat`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getJsonHeaders(),
     body: JSON.stringify({ message, context }),
   });
 
@@ -186,4 +220,30 @@ async function fetchChatFromBackend(
 
   const data = await response.json();
   return data.response;
+}
+
+// ── Feedback & Waitlist ──
+
+export async function submitFeedback(data: {
+  rating?: number;
+  comment?: string;
+  email?: string;
+  reportName?: string;
+}): Promise<void> {
+  await fetch(`${appConfig.apiBaseUrl}/api/feedback`, {
+    method: 'POST',
+    headers: getJsonHeaders(),
+    body: JSON.stringify(data),
+  });
+}
+
+export async function submitWaitlist(
+  email: string,
+  source: string
+): Promise<void> {
+  await fetch(`${appConfig.apiBaseUrl}/api/waitlist`, {
+    method: 'POST',
+    headers: getJsonHeaders(),
+    body: JSON.stringify({ email, source }),
+  });
 }
